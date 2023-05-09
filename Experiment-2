@@ -1,0 +1,100 @@
+mysql> use students;
+Database changed
+mysql>
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| stuid   | int(20)     | NO   | PRI | 0       |       |
+| stuname | varchar(20) | YES  |     | NULL    |       |
+| studept | varchar(10) | YES  |     | NULL    |       |
+| stuage  | int(20)     | YES  |     | NULL    |       |
+| course  | varchar(15) | YES  |     | NULL    |       |
+| address | varchar(15) | YES  | UNI | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> create table product(id int(10),name varchar(20),size int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into product values(1,"pen",500);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product values(2,"pencil",600);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into product values(3,"pad",800);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from product;
++------+--------+------+
+| id   | name   | size |
++------+--------+------+
+|    1 | pen    |  500 |
+|    2 | pencil |  600 |
+|    3 | pad    |  800 |
++------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> create table shop(id int(10),name varchar(20),address varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into shop values(1,"kirana","kurnool");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into shop values(2,"vmart","nandyal");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shop values(3,"dmart","chennai");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from shop;
++------+--------+---------+
+| id   | name   | address |
++------+--------+---------+
+|    1 | kirana | kurnool |
+|    2 | vmart  | nandyal |
+|    3 | dmart  | chennai |
++------+--------+---------+
+3 rows in set (0.00 sec)
+
+mysql> alter table product add primary key(id);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc product;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(10)     | NO   | PRI | 0       |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| size  | int(10)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> alter table shop add foreign key(id) references product(id);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc shop;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int(10)     | YES  | MUL | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+mysql> alter table product add unique(size);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc product;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(10)     | NO   | PRI | 0       |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| size  | int(10)     | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
