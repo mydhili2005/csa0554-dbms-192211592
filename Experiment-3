@@ -1,0 +1,72 @@
+mysql> use students;
+Database changed
+mysql> create table mentees(regno int(10),name varchar(20),dept varchar(10),fathername varchar(10));
+ERROR 1050 (42S01): Table 'mentees' already exists
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
+| faculty       |
+| mentees       |
+| student       |
+| studepartment |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> desc mentees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int(10)     | YES  |     | NULL    |       |
+| name       | varchar(15) | YES  |     | NULL    |       |
+| dept       | varchar(5)  | YES  |     | NULL    |       |
+| fathername | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into mentees values(192211280,"goutham","cse","harikrishna");
+ERROR 1406 (22001): Data too long for column 'fathername' at row 1
+mysql> insert into mentees values(192211280,"goutham","cse","krishna");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into mentees values(192211281,"geethika","cse","prasad");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into mentees values(192211283,"balaji","cse","narayana");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into mentees values(192211291,"raghu","cse","ram");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mentees;
++-----------+----------+------+------------+
+| regno     | name     | dept | fathername |
++-----------+----------+------+------------+
+| 192211280 | goutham  | cse  | krishna    |
+| 192211281 | geethika | cse  | prasad     |
+| 192211283 | balaji   | cse  | narayana   |
+| 192211291 | raghu    | cse  | ram        |
++-----------+----------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select name from mentees;
++----------+
+| name     |
++----------+
+| goutham  |
+| geethika |
+| balaji   |
+| raghu    |
++----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where name="goutham";
++-----------+---------+------+------------+
+| regno     | name    | dept | fathername |
++-----------+---------+------+------------+
+| 192211280 | goutham | cse  | krishna    |
++-----------+---------+------+------------+
+1 row in set (0.00 sec)
+
+mysql>
